@@ -4,7 +4,7 @@
 
 - **Pattern**: Simplified monolithic backend with separate frontend
 - **Frontend**: React SPA with TypeScript (Vercel hosting)
-- **Backend**: Node.js with Express.js and TypeScript (Railway hosting)
+- **Backend**: Node.js with Express.js and TypeScript (Render hosting)
 - **Database**: Supabase PostgreSQL (free tier - 500MB)
 - **Authentication**: Supabase Auth (built-in)
 - **File Storage**: Supabase Storage (free tier - 1GB)
@@ -63,9 +63,10 @@
 # Sign up: vercel.com with GitHub account
 # Auto-deploy from repository
 
-# 4. Railway (Backend Hosting)
-# Sign up: railway.app with GitHub account
-# Deploy from repository
+# 4. Render (Backend Hosting) - RECOMMENDED
+# Sign up: render.com with GitHub account
+# Permanent free tier (better than Railway's 30-day limit)
+# Deploy from repository with auto-deploy on push
 ```
 
 ### Environment Variables
@@ -77,19 +78,19 @@ SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
 SUPABASE_SERVICE_ROLE_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
 GEMINI_API_KEY=AIzaSyC...
 
-# Add same variables to Vercel & Railway dashboards for production
+# Add same variables to Vercel & Render dashboards for production
 ```
 
 ### Development Setup
 
 ```bash
-# Install dependencies
-npm install
+# Install all workspace dependencies (root, frontend, backend)
+npm run install:all
 
-# Start development servers
+# Start development servers concurrently
 npm run dev          # Start both frontend and backend
-npm run dev:frontend # React dev server (Vite)
-npm run dev:backend  # Express server with hot reload
+npm run dev:frontend # React dev server (Vite) only
+npm run dev:backend  # Express server with hot reload only
 
 # Supabase operations
 npx supabase init    # Initialize Supabase locally
@@ -115,15 +116,19 @@ npm run test:coverage
 ### Build & Deployment
 
 ```bash
-# Build for production
+# Build for production (backend)
 npm run build
 
-# Type checking
-npm run type-check
+# Start production server
+npm start
 
-# Linting and formatting
-npm run lint
-npm run format
+# Install all dependencies
+npm run install:all
+
+# Individual package operations (run from respective directories)
+cd frontend && npm run build    # Build frontend
+cd backend && npm run lint      # Lint backend code
+cd frontend && npm run lint     # Lint frontend code
 
 # Docker operations
 docker-compose up -d    # Start development environment

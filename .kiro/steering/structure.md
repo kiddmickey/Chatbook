@@ -11,9 +11,17 @@ chatbook-study-hub/
 ├── scripts/                  # Build and deployment scripts
 ├── .kiro/                    # Kiro configuration and specs
 ├── docker-compose.yml        # Development environment setup
-├── package.json              # Root package.json for workspace
+├── package.json              # Root workspace configuration with scripts
 └── README.md                 # Project documentation
 ```
+
+## Workspace Configuration
+
+The root `package.json` serves as the workspace coordinator with these key scripts:
+- `npm run dev`: Starts both frontend and backend concurrently using `concurrently`
+- `npm run install:all`: Installs dependencies for root, frontend, and backend
+- `npm run build`: Builds the backend for production
+- `npm start`: Starts the production server
 
 ## Frontend Structure (`/frontend`)
 ```

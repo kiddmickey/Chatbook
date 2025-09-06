@@ -1,0 +1,59 @@
+.App {
+  text-align: center;
+}
+
+.App-header {
+  background-color: #282c34;
+  padding: 40px;
+  color: white;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.App-header h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.App-header p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+}
+
+.status-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  max-width: 800px;
+  width: 100%;
+}
+
+.status-card {
+  background: #3a3f47;
+  padding: 1.5rem;
+  border-radius: 8px;
+  border: 1px solid #4a5568;
+}
+
+.status-card h3 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.1rem;
+}
+
+.status-ok {
+  color: #48bb78;
+  font-weight: bold;
+}
+
+.status-pending {
+  color: #ed8936;
+  font-weight: bold;
+}
+
+.status-error {
+  color: #f56565;
+  font-weight: bold;
+}
