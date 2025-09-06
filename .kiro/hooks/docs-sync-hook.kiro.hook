@@ -1,0 +1,25 @@
+{
+  "enabled": true,
+  "name": "Documentation Sync",
+  "description": "Monitors all TypeScript source files, configuration files, and project structure changes to automatically update documentation in README.md and /docs folder",
+  "version": "1",
+  "when": {
+    "type": "fileEdited",
+    "patterns": [
+      "frontend/src/**/*.ts",
+      "frontend/src/**/*.tsx",
+      "backend/src/**/*.ts",
+      "shared/**/*.ts",
+      "*.json",
+      "*.md",
+      "docker-compose.yml",
+      "frontend/package.json",
+      "backend/package.json",
+      "shared/package.json"
+    ]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "Source code or configuration files have been modified. Please review the changes and update the documentation accordingly. Focus on:\n\n1. Update README.md if there are changes to:\n   - Project structure or architecture\n   - Setup instructions or dependencies\n   - API endpoints or core functionality\n   - Technology stack or configuration\n\n2. Update /docs folder if it exists, or create documentation for:\n   - API documentation for new endpoints\n   - Component documentation for new UI components\n   - Architecture changes or new services\n   - Development workflow changes\n\n3. Ensure documentation reflects:\n   - Current project structure from structure.md guidelines\n   - Technology stack from tech.md specifications\n   - Product features from product.md requirements\n\nPlease analyze the file changes and provide clear, up-to-date documentation that helps developers understand and contribute to the project."
+  }
+}
