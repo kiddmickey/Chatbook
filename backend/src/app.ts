@@ -1,7 +1,6 @@
-import express, { Request, Response } from 'express';
-import cors from 'cors';
-import helmet from 'helmet';
-import dotenv from 'dotenv';
+import express, { Request, Response, NextFunction } from "express";
+import cors from "cors";
+import dotenv from "dotenv";
 
 // Load environment variables
 dotenv.config();
@@ -10,12 +9,16 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 
 // Middleware
-app.use(helmet());
 app.use(cors());
 app.use(express.json());
 
+// Root route
+app.get("/", (req: Request, res: Response) => {
+  res.send("Hello from Chatbook backend!");
+});
+
 // Health check endpoint
-app.get('/health', (_req: Request, res: Response) => {
+app.get('/health', (req: Request, res: Response) => {
   res.json({ 
     status: 'OK', 
     message: 'Chatbook Study Hub API is running',
@@ -23,13 +26,27 @@ app.get('/health', (_req: Request, res: Response) => {
   });
 });
 
-// API routes
-app.get('/api/test', (_req: Request, res: Response) => {
+// API test route
+app.get('/api/test', (req: Request, res: Response) => {
   res.json({ 
     message: 'Backend is working!',
     supabase: process.env.SUPABASE_URL ? 'Connected' : 'Not configured',
     gemini: process.env.GEMINI_API_KEY ? 'Connected' : 'Not configured'
   });
+});
+
+// Example POST route
+app.post("/api/echo", (req: Request, res: Response) => {
+  res.json({
+    message: "Received data successfully",
+    data: req.body,
+  });
+});
+
+// Error handler middleware (typed)
+app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
+  console.error(err.stack);
+  res.status(500).json({ error: err.message });
 });
 
 // Start server
