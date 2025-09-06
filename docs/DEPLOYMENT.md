@@ -248,11 +248,16 @@ Environment: Node
 Region: Oregon (US West)
 Branch: main
 Root Directory: (leave empty or set to ".")
-Build Command: npm run install:all && npm run build
+Build Command: npm run install:all && cd backend && npm install && cd .. && npm run build
 Start Command: npm start
 ```
 
 **Important**: Make sure the "Root Directory" field is either empty or set to "." (dot). Do not set it to "src" or any other subdirectory.
+
+**Alternative Build Command** (if the above doesn't work):
+```bash
+npm install && cd frontend && npm install && cd ../backend && npm install --include=dev && cd .. && npm run build
+```
 
 #### Environment Variables
 Add these in Render dashboard:
