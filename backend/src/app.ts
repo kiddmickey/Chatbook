@@ -1,4 +1,4 @@
-import express from 'express';
+import express, { Request, Response } from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
 import dotenv from 'dotenv';
@@ -15,7 +15,7 @@ app.use(cors());
 app.use(express.json());
 
 // Health check endpoint
-app.get('/health', (req, res) => {
+app.get('/health', (_req: Request, res: Response) => {
   res.json({ 
     status: 'OK', 
     message: 'Chatbook Study Hub API is running',
@@ -24,7 +24,7 @@ app.get('/health', (req, res) => {
 });
 
 // API routes
-app.get('/api/test', (req, res) => {
+app.get('/api/test', (_req: Request, res: Response) => {
   res.json({ 
     message: 'Backend is working!',
     supabase: process.env.SUPABASE_URL ? 'Connected' : 'Not configured',
